@@ -118,7 +118,54 @@ router.post('/delete-promocion/:code', function(req, res, next) {
   });
 });
 
+//active promocion
+router.post('/active-promocion/:code', function(req, res, next) {
+  var code = req.params.code;
+  console.log(code)
+  //metodo para buscar la promocion
+  productos.find({'id_promo': code})
+  .then((rawResponse) =>{
+    if(!rawResponse){
 
+            promocion.find({'id_promo': code})
+            .then((rawResponse) =>{
+              if(!rawResponse){
+                return res.status(404).send({message: 'Ningun registro identificado'});
+              }else{
+                console.log('correcto')
+                //metodo que cambia el stock
+                promocion.updateOne({'id_promo': code}, {'status': "Activo" })
+                .then((promocion) => {
+                    console.log('update')
+                    console.log(promocion)
+
+                    console.log('correcto')
+                    var result = {'success':true}
+                    console.log(result)
+                    return res.json(result);
+                  })
+                .catch((err) => {
+                  return res.status(500).send('Error en la peticion');
+                });
+              }
+            })
+            .catch((err) => {
+              console.log(err)
+              return res.status(500).send('Error en la peticion');
+            });
+
+    }else{
+      console.log('No puede activar')
+      var result = {'success':false}
+      console.log(result)
+      return res.json(result);
+    }
+  })
+  .catch((err) => {
+    console.log(err)
+    return res.status(500).send('Error en la peticion');
+  });
+});
 
 
 module.exports = router;

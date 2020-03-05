@@ -122,7 +122,7 @@ router.post('/new-noticia', function(req, res, next) {
   console.log(specific_data);
 
   var query = {
-    'ruta': "http://localhost:3001/imagenes_noticias/" + req.files.img1.name,
+    'ruta': "http://refacenet.org:63/noticias/" + req.files.img1.name,
     'categoria': specific_data.categoria,
     'titulo': specific_data.titulo,
     'contenido': specific_data.contenido,
@@ -133,7 +133,7 @@ router.post('/new-noticia', function(req, res, next) {
   console.log(query);
 
   let img = req.files.img1;
-  var route1 = "/Users/macbookair/Documents/refacesys/replace-sys/admin-backend/app/public/imagenes_noticias/" + req.files.img1.name;
+  var route1 = "/var/www/html/replace-sys/backend/app/public/noticias/" + req.files.img1.name;
   noticia.create(query)
   .then((noticia) =>
   {
@@ -164,6 +164,37 @@ router.post('/delete-noticia/:titulo', function(req, res, next) {
       console.log('correcto')
       //metodo que cambia el stock
       noticia.updateOne({'titulo': titulo}, {'status': "Inactivo" })
+      .then((noticia) => {
+        console.log('update')
+        console.log(noticia)
+        var result = {'success':true}
+        console.log(result)
+        return res.json(result);
+      })
+      .catch((err) => {
+        return res.status(500).send('Error en la peticion');
+      });
+    }
+  })
+  .catch((err) => {
+    console.log(err)
+    return res.status(500).send('Error en la peticion');
+  });
+});
+
+//active noticia
+router.post('/active-noticia/:titulo', function(req, res, next) {
+  var titulo = req.params.titulo;
+  console.log(titulo)
+  //metodo para buscar el producto
+  noticia.find({'titulo': titulo})
+  .then((rawResponse) =>{
+    if(!rawResponse){
+      return res.status(404).send({message: 'Ningun registro identificado'});
+    }else{
+      console.log('correcto')
+      //metodo que cambia el stock
+      noticia.updateOne({'titulo': titulo}, {'status': "Activo" })
       .then((noticia) => {
         console.log('update')
         console.log(noticia)

@@ -16,10 +16,7 @@ var ProductosSchema = Schema({
   stock: Number,
   categoria: String,
   status: String,
-  id_promo: String,
-  pesado: String,
-  outlet: String,
-  fecha: String
+  id_promo: String
 });
 // Exportamos el modelo para usarlo en otros ficheros
 module.exports = mongoose.model('Productos', ProductosSchema);

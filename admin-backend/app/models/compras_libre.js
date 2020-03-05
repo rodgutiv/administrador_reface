@@ -11,7 +11,8 @@ var ComprasLibreSchema = Schema({
   total_venta:Number,
   datos_personales:
   {
-    nombre_completo: String,
+    nombres: String,
+    apellidos: String,
     email: String,
     telefono: String,
   },
@@ -25,7 +26,8 @@ var ComprasLibreSchema = Schema({
     num_exterior: String,
     colonia: String,
     referencias: String
-  }
+  },
+  numero_guia: String
 });
 // Exportamos el modelo para usarlo en otros ficheros
 module.exports = mongoose.model('ComprasLibre', ComprasLibreSchema);

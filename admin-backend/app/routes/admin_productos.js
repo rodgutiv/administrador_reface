@@ -111,11 +111,11 @@ router.post('/new-product', function(req, res, next) {
     'status': "Activo"
   }
 
-  let img1 = req.files.img1.name;
+  let img1 = req.files.img1;
   var route1 = "../admin/imagenes/" + specific_data[1].value + "-001.jpg"
-  let img2 = req.files.img2.name;
+  let img2 = req.files.img2;
   var route2 = "../admin/imagenes/" + specific_data[1].value + "-002.jpg"
-  let img3 = req.files.img3.name;
+  let img3 = req.files.img3;
   var route3 = "../admin/imagenes/" + specific_data[1].value + "-003.jpg"
 /*
   producto.create(query,function (err, producto){
@@ -179,6 +179,37 @@ router.post('/delete-product/:code', function(req, res, next) {
       console.log('correcto')
       //metodo que cambia el stock
       producto.updateOne({'clave_interna': code}, {'status': "Inactivo" })
+      .then((producto) => {
+        console.log('update')
+        console.log(producto)
+        var result = {'success':true}
+        console.log(result)
+        return res.json(result);
+      })
+      .catch((err) => {
+        return res.status(500).send('Error en la peticion');
+      });
+    }
+  })
+  .catch((err) => {
+    console.log(err)
+    return res.status(500).send('Error en la peticion');
+  });
+});
+
+//delete product
+router.post('/active-product/:code', function(req, res, next) {
+  var code = req.params.code;
+  console.log(code)
+  //metodo para buscar el producto
+  producto.find({'clave_interna': code})
+  .then((rawResponse) =>{
+    if(!rawResponse){
+      return res.status(404).send({message: 'Ningun registro identificado'});
+    }else{
+      console.log('correcto')
+      //metodo que cambia el stock
+      producto.updateOne({'clave_interna': code}, {'status': "Activo" })
       .then((producto) => {
         console.log('update')
         console.log(producto)

@@ -4,7 +4,6 @@ var router = express.Router();
 var compras_libre = require('../models/compras_libre');
 var carrito_compras = require('../models/carrito-compras');
 var facturas = require('../models/facturas');
-var tarjetas = require('../models/tarjetas');
 
 //Obtener todas las compras
 /* GET all products */
@@ -57,11 +56,10 @@ router.post('/compra-status', function(req, res, next) {
 });
 
 //Actualizar referencia de Oxxo
-router.post('/actualizar-referencia', function(req, res, next) {
-  var data = req.body;
-  var num_ref = data[0].value;
+router.post('/actualizar-referencia/:ref', function(req, res, next) {
+  var num_ref = req.params.ref;
+  console.log(num_ref);
 //  var num_ref = req.params.referencia;
-  console.log(num_ref)
   console.log('correcto')
   //metodo que cambia el status
   facturas.updateOne({'numero_referencia': num_ref })
@@ -86,80 +84,6 @@ router.get('/obtener-referencia', function(req, res, next) {
     console.log(facturas)
     return res.json(facturas);
   });
-});
-
-//Obtener dato de tarjeta de debito
-router.get('/obtener-debito', function(req, res, next) {
-  tarjetas.find({ 'tipo': 'debito' }, function (err, tarjetas){
-      if(err)
-        return res.status(500).send('Error en la peticion');
-      if(!tarjetas)
-        return res.status(404).send({message: 'Ningun registro identificado'});
-    console.log("debito: ")
-    console.log(tarjetas)
-    return res.json(tarjetas);
-  });
-});
-
-//Actualizar referencia de Oxxo
-router.post('/actualizar-debito', function(req, res, next) {
-  var data = req.body;
-  var query = {
-    'numero':   data[0].value,
-    'nombre':   data[1].value,
-    'fecha':    data[2].value,
-    'digitos':  data[3].value,
-    'tipo': 'debito'
-  }
-
-  console.log('consulta a actualizar')
-  console.log(query)
-  //metodo que cambia el status
-  tarjetas.updateOne({'tipo': 'debito' }, query)
-    .then((tarjetas) => {
-        console.log('update')
-        console.log(tarjetas)
-        return res.json(tarjetas);
-      })
-      .catch((err) => {
-        return res.status(500).send('Error en la peticion');
-      });
-});
-
-//Obtener dato de tarjeta de credito
-router.get('/obtener-credito', function(req, res, next) {
-  tarjetas.find({ 'tipo': 'credito' }, function (err, tarjetas){
-      if(err)
-        return res.status(500).send('Error en la peticion');
-      if(!tarjetas)
-        return res.status(404).send({message: 'Ningun registro identificado'});
-    console.log("credito: ")
-    console.log(tarjetas)
-    return res.json(tarjetas);
-  });
-});
-
-router.post('/actualizar-credito', function(req, res, next) {
-  var data = req.body;
-  var query = {
-    'numero':   data[0].value,
-    'nombre':   data[1].value,
-    'fecha':    data[2].value,
-    'digitos':  data[3].value,
-    'tipo': 'credito'
-  }
-
-  console.log('correcto')
-  //metodo que cambia el status
-  tarjetas.updateOne({'tipo': 'credito' }, query)
-    .then((tarjetas) => {
-        console.log('update')
-        console.log(tarjetas)
-        return res.json(tarjetas);
-      })
-      .catch((err) => {
-        return res.status(500).send('Error en la peticion');
-      });
 });
 
 //Obtener compras por comprador
