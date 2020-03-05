@@ -16,16 +16,16 @@
             class="purple-input"
             label="Clave"
             name="clave_interna"
-            disabled="true"
             :value="clave_interna"
+            :rules="rules1"
           />
             <h4> Código: </h4>
             <v-text-field
               class="purple-input"
               label="Código"
               name="codigo"
-              disabled="true"
               :value="codigo"
+              :rules="rules0"
             />
             <h4> Nombre: </h4>
             <v-text-field
@@ -33,6 +33,7 @@
               label="Nombre"
               name="nombre"
               :value="nombre"
+              :rules="rules2"
             />
             <h4> Descripción: </h4>
             <v-text-field
@@ -40,6 +41,7 @@
               label="Descripción"
               name="descripcion"
               :value="descripcion"
+              :rules="rules2"
             />
             <h4> Categoría: </h4>
             <v-text-field
@@ -47,6 +49,7 @@
               label="Categoría"
               name="categoria"
               :value="categoria"
+              :rules="rules2"
             />
             <h4> Subcategoría: </h4>
             <v-text-field
@@ -54,6 +57,7 @@
               label="Subcategoría"
               name="tipo"
               :value="tipo"
+              :rules="rules2"
             />
             <h4> Marca: </h4>
             <v-text-field
@@ -61,6 +65,7 @@
               label="Marca"
               name="marca"
               :value="marca"
+              :rules="rules2"
             />
             <h4> Autos: </h4>
             <v-text-field
@@ -76,6 +81,9 @@
               name="precio"
               :value="precio"
               type="number"
+              step="0.01"
+              min="0"
+              :rules="rules0"
             />
             <h4> Stock: </h4>
             <v-text-field
@@ -84,6 +92,8 @@
               name="stock"
               :value="stock""
               type="number"
+              min="0"
+              :rules="rules0"
             />
 
             <h4> Promoción: </h4>
@@ -93,6 +103,7 @@
               :value="id_promo"
               name="id_promo"
               outlined
+              :rules="rules0"
             ></v-select>
 <!--
             <v-text-field
@@ -109,6 +120,7 @@
               :value="pesado"
               name="pesado"
               outlined
+              :rules="rules0"
             ></v-select>
 <!--
             <v-text-field
@@ -125,6 +137,7 @@
               :value="outlet"
               name="outlet"
               outlined
+              :rules="rules0"
             ></v-select>
 <!--
             <v-text-field
@@ -199,20 +212,23 @@ export default {
         dialog: false,
         items: ['Si','No'],
         items_promos: ["0"],
+        rules0: [
+          value => !!value || 'Required.',
+        ],
         rules1: [
           value => !!value || 'Required.',
-          value => (value || '').length <= 50 || 'Max 50 characters',
+          value => (value || '').length <= 10 || 'Max 10 characters',
           value => {
-            const pattern = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
-            return pattern.test(value) || 'Nombre(s) invalido(s).'
+            const pattern = /^([0-9]+[\s]*)+$/;
+            return pattern.test(value) || 'Clave Interna invalida.'
           },
         ],
         rules2: [
           value => !!value || 'Required.',
-          value => (value || '').length <= 50 || 'Max 50 characters',
+          value => (value || '').length <= 200 || 'Max 200 characters',
           value => {
-            const pattern = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
-            return pattern.test(value) || 'Apellido(s) invalido(s).'
+            const pattern = /^([A-ZÁÉÍÓÚ0-9]+[\s]*)+$/;
+            return pattern.test(value) || 'Dato invalido.'
           },
         ]
       }
