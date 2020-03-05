@@ -35,6 +35,8 @@
               label="Descuento"
               name="descuento"
               type="number"
+              min="0"
+              max="100"
             />
             <h4> Imágen Asociada: </h4>
             <input
