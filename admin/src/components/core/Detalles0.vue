@@ -5,7 +5,7 @@
     </template>
     <v-card>
       <v-toolbar color="#003b94">
-        <v-toolbar-title>Detalles {{ nombre }}</v-toolbar-title>
+       <v-toolbar-title style="color:white;">Detalles {{ nombre }}</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-layout row>
@@ -35,8 +35,8 @@
                >
                  <v-card flat tile class="d-flex">
                    <v-img
-                     :src="`/Users/macbookair/Documents/refacesys/replace-sys/admin-backend/app/public/imagenes_productos/` + clave_interna + `/` + clave_interna + `-00` + n + `.jpg`"
-                     :lazy-src="`/Users/macbookair/Documents/refacesys/replace-sys/admin-backend/app/public/imagenes_productos/` + clave_interna + `/` + clave_interna + `-00` + n + `.jpg`"
+                     :src="`http://10.3.0.7:62/replace-sys/imagenes_productos/` + clave_interna + `/` + clave_interna + `-00` + n + `.jpg`"
+                     :lazy-src="`http://10.3.0.7:62/replace-sys/imagenes_productos/` + clave_interna + `/` + clave_interna + `-00` + n + `.jpg`"
                         aspect-ratio="1"
                      class="grey lighten-2"
                    >

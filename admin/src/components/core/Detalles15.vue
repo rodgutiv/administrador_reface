@@ -6,7 +6,7 @@
     <v-card>
       <v-form id="form" ref="form" v-model="valid" v-on:submit.prevent="Update()" enctype="multipart/form-data" lazy-validation>
         <v-toolbar color="#003b94">
-          <v-toolbar-title>Nueva Promocion</v-toolbar-title>
+         <v-toolbar-title style="color:white;">Nueva Promocion</v-toolbar-title>
           <v-spacer></v-spacer>
         </v-toolbar>
         <v-layout row>
@@ -48,16 +48,16 @@
           </v-flex>
         </v-layout>
         <v-card-actions>
-          <v-spacer></v-spacer>
+          
 
           <v-btn
-            color="green darken-1"
+            color="red darken-1"
             flat="flat"
             @click="dialog = false"
           >
             Cancelar
           </v-btn>
-
+          <v-spacer></v-spacer>
           <v-btn
             color="green darken-1"
             flat="flat"

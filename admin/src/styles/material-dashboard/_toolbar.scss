@@ -71,6 +71,19 @@
 
 @media all and (max-width: 990px) {
   .v-toolbar:not(.v-toolbar--fixed) .v-toolbar__content {
-    margin-left: 0;
+    margin-left: 0!important;
   }
+}
+
+.v-toolbar:not(.v-toolbar--fixed) .v-toolbar__content{
+  margin-left: 0!important;
+  color:white;
+}
+
+.v-toolbar__content{
+  margin-left: 0!important;
+  color:white;
+}
+.v-toolbar__title{
+  color:white;
 }

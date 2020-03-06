@@ -5,7 +5,7 @@
     </template>
     <v-card>
       <v-toolbar dark color="indigo">
-        <v-toolbar-title >Eliminar Producto</v-toolbar-title>
+       <v-toolbar-title style="color:white;" >Eliminar Producto</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-layout row>
@@ -16,15 +16,14 @@
         </v-flex>
       </v-layout>
       <v-card-actions>
-        <v-spacer></v-spacer>
         <v-btn
-          color="green darken-1"
+          color="red darken-1"
           flat="flat"
           @click="dialog = false"
         >
           Cancelar
         </v-btn>
-
+        <v-spacer></v-spacer>
         <v-btn
           color="green darken-1"
           flat="flat"
@@ -41,26 +40,26 @@
     </template>
     <v-card>
       <v-toolbar dark color="indigo">
-        <v-toolbar-title >Activar Usuario</v-toolbar-title>
+       <v-toolbar-title style="color:white;" >Activar Usuario</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-layout row>
         <v-flex xs10 offset-xs1 >
-          <v-card-text>
+          <v-card-text style="text-align:center">
             ¿Estás seguro de que deseas reactivar el producto {{nombre}} del sistema?
           </v-card-text>
         </v-flex>
       </v-layout>
       <v-card-actions>
-        <v-spacer></v-spacer>
+        
         <v-btn
-          color="green darken-1"
+          color="red darken-1"
           flat="flat"
           @click="dialog = false"
         >
           Cancelar
         </v-btn>
-
+        <v-spacer></v-spacer>
         <v-btn
           color="green darken-1"
           flat="flat"

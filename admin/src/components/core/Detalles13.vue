@@ -5,7 +5,7 @@
     </template>
     <v-card>
       <v-toolbar color="#003b94">
-        <v-toolbar-title>Detalles {{ titulo }}</v-toolbar-title>
+       <v-toolbar-title style="color:white;">Detalles {{ titulo }}</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-layout row>

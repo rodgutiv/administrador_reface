@@ -5,7 +5,7 @@
     </template>
     <v-card>
       <v-toolbar color="#003b94">
-        <v-toolbar-title>Imagen Asociada</v-toolbar-title>
+       <v-toolbar-title style="color:white;">Imagen Asociada</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-layout row>

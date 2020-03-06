@@ -5,26 +5,26 @@
     </template>
     <v-card>
       <v-toolbar dark color="indigo">
-        <v-toolbar-title >Eliminar Promocion</v-toolbar-title>
+       <v-toolbar-title style="color:white;" >Eliminar Promocion</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-layout row>
         <v-flex xs10 offset-xs1 >
-          <v-card-text>
+          <v-card-text style="text-align:center">
             ¿Estás seguro de que deseas eliminar la promocion {{nombre}} del sistema?
           </v-card-text>
         </v-flex>
       </v-layout>
       <v-card-actions>
-        <v-spacer></v-spacer>
+        
         <v-btn
-          color="green darken-1"
+          color="red darken-1"
           flat="flat"
           @click="dialog = false"
         >
           Cancelar
         </v-btn>
-
+        <v-spacer></v-spacer>
         <v-btn
           color="green darken-1"
           flat="flat"
@@ -41,26 +41,26 @@
     </template>
     <v-card>
       <v-toolbar dark color="indigo">
-        <v-toolbar-title >Activar Promocion</v-toolbar-title>
+       <v-toolbar-title style="color:white;" >Activar Promocion</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-layout row>
         <v-flex xs10 offset-xs1 >
-          <v-card-text>
+          <v-card-text style="text-align:center">
             ¿Estás seguro de que deseas activar la promocion {{nombre}} del sistema?
           </v-card-text>
         </v-flex>
       </v-layout>
       <v-card-actions>
-        <v-spacer></v-spacer>
+        
         <v-btn
-          color="green darken-1"
+          color="red darken-1"
           flat="flat"
           @click="dialog = false"
         >
           Cancelar
         </v-btn>
-
+        <v-spacer></v-spacer>
         <v-btn
           color="green darken-1"
           flat="flat"

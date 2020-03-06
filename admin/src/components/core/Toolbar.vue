@@ -7,7 +7,7 @@
     style="background: #eee;"
   >
     <div class="v-toolbar-title">
-      <v-toolbar-title
+     <v-toolbar-title style="color:white;"
         class="tertiary--text font-weight-light"
       >
         <v-btn
@@ -46,7 +46,7 @@
         >
           <v-icon color="tertiary">mdi-view-dashboard</v-icon>
       -->    
-        </router-link>
+        
 <!--
         <v-menu
           bottom

@@ -5,7 +5,7 @@
     </template>
     <v-card>
       <v-toolbar dark color="indigo">
-        <v-toolbar-title >Ver detalles de compra {{id}}</v-toolbar-title>
+       <v-toolbar-title style="color:white;" >Ver detalles de compra {{id}}</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-layout row>

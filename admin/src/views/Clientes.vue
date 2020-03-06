@@ -8,6 +8,7 @@
       justify-center
       wrap
     >
+      
       <v-flex
         md12
       >
@@ -16,11 +17,15 @@
           title="Clientes"
           text="Datos de clientes registrados en la plataforma Reface"
         >
+          <v-text-field outline label="Buscar" v-model="buscar">
+            
+          </v-text-field>
           <v-data-table
             :headers="headers"
             :items="items"
             :loading="ver"
             loading-text="Buscando... por favor, espere un momento."
+            :search="buscar"
           >
             <template
               slot="headerCell"
@@ -93,19 +98,19 @@ export default {
       headers: [
         {
           text: 'Nombres',
-          value: 'nombres'
+          value: 'datos_personales.nombres'
         },
         {
           text: 'Apellidos',
-          value: 'apellidos'
+          value: 'datos_personales.apellidos'
         },
         {
           text: 'Username',
-          value: 'username'
+          value: 'datos_personales.username'
         },
         {
           text: 'Telefono',
-          value: 'telefono'
+          value: 'datos_personales.telefono'
         },
         {
           text: 'Status',
@@ -117,7 +122,8 @@ export default {
           value: 'acciones',
           align: 'right'
         }
-      ]
+      ],
+      buscar:null
     }
 },
  methods: {

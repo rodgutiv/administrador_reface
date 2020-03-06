@@ -5,7 +5,7 @@
     </template>
     <v-card>
       <v-toolbar dark color="indigo">
-        <v-toolbar-title >Ver detalles de {{nombres}} {{apellidos}}</v-toolbar-title>
+       <v-toolbar-title style="color:white;">Ver detalles de {{nombres}} {{apellidos}}</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-layout row>
@@ -69,3 +69,9 @@ export default {
     }
 }
 </script>
+<style>
+  .toolbar__content {
+    margin-left: 0px!important;
+}
+
+</style>

@@ -6,7 +6,7 @@
     <v-card>
       <v-form ref="form" v-model="valid" v-on:submit.prevent="Update()" lazy-validation>
         <v-toolbar color="#003b94">
-          <v-toolbar-title>Editar {{ nombre }}</v-toolbar-title>
+         <v-toolbar-title style="color:white;">Editar {{ nombre }}</v-toolbar-title>
           <v-spacer></v-spacer>
         </v-toolbar>
         <v-layout row>
@@ -90,7 +90,7 @@
               class="purple-input"
               label="Stock"
               name="stock"
-              :value="stock""
+              :value="stock"
               type="number"
               min="0"
               :rules="rules0"
@@ -158,16 +158,16 @@
           </v-flex>
         </v-layout>
         <v-card-actions>
-          <v-spacer></v-spacer>
+          
 
           <v-btn
-            color="green darken-1"
+            color="red darken-1"
             flat="flat"
             @click="dialog = false"
           >
             Cancelar
           </v-btn>
-
+          <v-spacer></v-spacer>
           <v-btn
             color="green darken-1"
             flat="flat"
