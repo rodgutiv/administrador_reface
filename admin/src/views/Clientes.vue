@@ -82,9 +82,9 @@ export default {
       rating: 3,
       id:null,
       show: false,
-      rowsPerPageItems: [12, 24, 36],
+      rowsPerPageItems: [10, 20, 30],
       pagination: {
-        rowsPerPage: 12
+        rowsPerPage: 10
       },
       items: [],
       errors: [],

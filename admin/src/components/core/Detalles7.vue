@@ -4,7 +4,7 @@
       <v-btn v-on="on" small color="#003b94" dark> Añadir Nuevo </v-btn>
     </template>
     <v-card>
-      <v-form ref="form" v-model="valid" v-on:submit.prevent="Update()" lazy-validation>
+      <v-form ref="form" v-on:submit.prevent="Update()" lazy-validation>
         <v-toolbar color="#003b94">
          <v-toolbar-title style="color:white;">Nuevo Producto</v-toolbar-title>
           <v-spacer></v-spacer>

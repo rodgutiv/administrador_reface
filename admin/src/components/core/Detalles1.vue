@@ -1,12 +1,9 @@
 <template>
   <v-dialog v-model="dialog" max-width="500">
-    <template v-slot:activator="{ on }">
-      <v-btn v-on="on" small color="#003b94" dark> Editar </v-btn>
-    </template>
     <v-card>
-      <v-form ref="form" v-model="valid" v-on:submit.prevent="Update()" lazy-validation>
+      <v-form ref="form"  v-on:submit.prevent="Update()" lazy-validation>
         <v-toolbar color="#003b94">
-         <v-toolbar-title style="color:white;">Editar {{ nombre }}</v-toolbar-title>
+         <v-toolbar-title style="color:white;">Editar {{ info.nombre }}</v-toolbar-title>
           <v-spacer></v-spacer>
         </v-toolbar>
         <v-layout row>
@@ -16,7 +13,7 @@
             class="purple-input"
             label="Clave"
             name="clave_interna"
-            :value="clave_interna"
+            :value="info.clave_interna"
             :rules="rules1"
           />
             <h4> Código: </h4>
@@ -24,7 +21,7 @@
               class="purple-input"
               label="Código"
               name="codigo"
-              :value="codigo"
+              :value="info.codigo"
               :rules="rules0"
             />
             <h4> Nombre: </h4>
@@ -32,7 +29,7 @@
               class="purple-input"
               label="Nombre"
               name="nombre"
-              :value="nombre"
+              :value="info.nombre"
               :rules="rules2"
             />
             <h4> Descripción: </h4>
@@ -40,7 +37,7 @@
               class="purple-input"
               label="Descripción"
               name="descripcion"
-              :value="descripcion"
+              :value="info.descripcion"
               :rules="rules2"
             />
             <h4> Categoría: </h4>
@@ -48,7 +45,7 @@
               class="purple-input"
               label="Categoría"
               name="categoria"
-              :value="categoria"
+              :value="info.categoria"
               :rules="rules2"
             />
             <h4> Subcategoría: </h4>
@@ -56,7 +53,7 @@
               class="purple-input"
               label="Subcategoría"
               name="tipo"
-              :value="tipo"
+              :value="info.tipo"
               :rules="rules2"
             />
             <h4> Marca: </h4>
@@ -64,7 +61,7 @@
               class="purple-input"
               label="Marca"
               name="marca"
-              :value="marca"
+              :value="info.marca"
               :rules="rules2"
             />
             <h4> Autos: </h4>
@@ -72,14 +69,14 @@
               class="purple-input"
               label="Autos"
               name="autos"
-              :value="autos"
+              :value="info.autos"
             />
             <h4> Precio: </h4>
             <v-text-field
               class="purple-input"
               label="Precio"
               name="precio"
-              :value="precio"
+              :value="info.precio"
               type="number"
               step="0.01"
               min="0"
@@ -90,7 +87,7 @@
               class="purple-input"
               label="Stock"
               name="stock"
-              :value="stock"
+              :value="info.stock"
               type="number"
               min="0"
               :rules="rules0"
@@ -100,7 +97,7 @@
             <v-select
               :items="items_promos"
               label="Promocion"
-              :value="id_promo"
+              :value="info.id_promo"
               name="id_promo"
               outlined
               :rules="rules0"
@@ -117,7 +114,7 @@
             <v-select
               :items="items"
               label="Pesado"
-              :value="pesado"
+              :value="info.pesado"
               name="pesado"
               outlined
               :rules="rules0"
@@ -134,7 +131,7 @@
             <v-select
               :items="items"
               label="Outlet"
-              :value="outlet"
+              :value="info.outlet"
               name="outlet"
               outlined
               :rules="rules0"
@@ -163,7 +160,7 @@
           <v-btn
             color="red darken-1"
             flat="flat"
-            @click="dialog = false"
+            @click="close(null)"
           >
             Cancelar
           </v-btn>
@@ -172,7 +169,6 @@
             color="green darken-1"
             flat="flat"
             type="submit"
-            @click="dialog = false"
           >
             Guardar Cambios
           </v-btn>
@@ -188,28 +184,10 @@ import $ from 'jquery'
 
 export default {
     name: 'Frame',
-    props: {
-      nombre: String,
-      codigo: String,
-      clave_interna: String,
-      descripcion: String,
-      categoria: String,
-      tipo: String,
-      marca: String,
-      precio: Number,
-      autos: String,
-      stock: Number,
-      status: String,
-      autos: String,
-      id_promo: String,
-      pesado: String,
-      outlet: String
-    },
+    props: ['dialog','info'],
     data () {
       return {
         cant: 0,
-        info:null,
-        dialog: false,
         items: ['Si','No'],
         items_promos: ["0"],
         rules0: [
@@ -234,13 +212,17 @@ export default {
       }
     },
     methods: {
+      close(datos){
+        this.$emit('close',datos)
+      },
        Update(){
          api.post('/ad-productos/update-product', $(event.currentTarget).serializeArray())
          .then(response => {
            // JSON responses are automatically parsed.
 //           this.models = response.data;
              alert('Actualización realizada con éxito');
-             window.location.replace("http://refacenet.org:61/productos");
+             this.close(true)
+             //window.location.replace("http://refacenet.org:61/productos");
            //console.log(this.items);
          })
          .catch(e => {
@@ -251,7 +233,7 @@ export default {
        }
     },
     created() {
-        this.info = this.$route.params.info
+        //this.info = this.$route.params.info
         if(sessionStorage.getItem("dato")!=null){
           this.escrito=sessionStorage.getItem("dato")
         }else{
