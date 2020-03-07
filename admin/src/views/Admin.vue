@@ -16,7 +16,7 @@
           title="Perfil Administrador"
           text="Ver/Editar datos de perfil"
         >
-          <v-form ref="form" v-model="valid" v-on:submit.prevent="Update()" lazy-validation>
+          <v-form ref="form" v-on:submit.prevent="Update()" lazy-validation>
             <v-container py-0>
               <v-layout wrap>
 
@@ -27,7 +27,7 @@
                   <v-text-field
                     class="purple-input"
                     label="Id"
-                    disabled="true"
+                    readonly
                     name="id"
                     :value="items.id"
                   />
@@ -299,7 +299,7 @@ export default {
         value => !!value || 'Required.',
         value => (value || '').length <= 50 || 'Max 50 characters',
         value => {
-          const pattern = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
+          const pattern = /^(?!\s)+([A-Za-zÑñáéíóúÁÉÍÓÚ]{3,})+([\s{1}]+([A-Za-zÑñáéíóúÁÉÍÓÚ]{3,}))*$/;
           return pattern.test(value) || 'Nombre(s) invalido(s).'
         },
       ],
@@ -307,7 +307,7 @@ export default {
         value => !!value || 'Required.',
         value => (value || '').length <= 50 || 'Max 50 characters',
         value => {
-          const pattern = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
+          const pattern = /^(?!\s)+([A-Za-zÑñáéíóúÁÉÍÓÚ]{3,})+([\s{1}]+([A-Za-zÑñáéíóúÁÉÍÓÚ]{3,}))*$/;
           return pattern.test(value) || 'Apellido(s) invalido(s).'
         },
       ],
@@ -315,7 +315,7 @@ export default {
         value => !!value || 'Required.',
         value => (value || '').length <= 50 || 'Max 50 characters',
         value => {
-          const pattern = /^[a-z0-9_-]{3,51}$/;
+          const pattern = /^[a-zA-Z0-9_-]{3,51}$/;
           return pattern.test(value) || 'Username invalido.'
         },
       ],
@@ -381,33 +381,35 @@ export default {
     }
 },
  methods: {
+   usuario(){
+     api.get(`/ad-usuarios/all-users/0`)
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.items = response.data
+      console.log("los items son los siguientes:")
+      console.log(this.items);
+      console.log("el nombre es el siguiente:")
+      console.log(this.items.datos_personales.nombres);
+    })
+    .catch(e => {
+      this.errors.push(e)
+    //  console.log("Error");
+    //  console.log(e);
+    })
+   },
      Update(){
        var resp = $(event.currentTarget).serializeArray();
+       console.log('datos: ',resp)
 //       console.log("Respuesta del update");
 //       console.log(resp);
-       var fail=false;
-       for(var i=0; i < resp.length; i++)
-       {
-//       console.log(resp[i].value);
-//       console.log(fail);
-        if(i!=7)
-        {
-          if (resp[i].value=="")
-            fail=true;
-        }
-       }
-       if(fail==true)
-       {
-          alert('Necesitas completar todos los campos');
-       }
-       else
-       {
-           api.post('/ad-usuarios/update-admin', $(event.currentTarget).serializeArray())
+       if (this.$refs.form.validate()) {
+        api.post('/ad-usuarios/update-admin', $(event.currentTarget).serializeArray())
            .then(response => {
              // JSON responses are automatically parsed.
         //           this.models = response.data;
                alert('Actualización realizada con éxito');
-               window.location.replace("http://refacenet.org:61/admin");
+               this.usuario()
+               //window.location.replace("http://refacenet.org:61/admin");
              //console.log(this.items);
            })
            .catch(e => {
@@ -415,7 +417,12 @@ export default {
            //  console.log("Error");
              console.log(e);
            })
+      }else{
+          alert('Necesitas completar todos los campos');
        }
+       
+           
+       
      }
  },
 created() {
@@ -430,20 +437,7 @@ created() {
     }else{
       this.escrito=''
     }
-    api.get(`/ad-usuarios/all-users/0`)
-    .then(response => {
-      // JSON responses are automatically parsed.
-      this.items = response.data
-      console.log("los items son los siguientes:")
-      console.log(this.items);
-      console.log("el nombre es el siguiente:")
-      console.log(this.items.datos_personales.nombres);
-    })
-    .catch(e => {
-      this.errors.push(e)
-    //  console.log("Error");
-    //  console.log(e);
-    })
+    this.usuario()
 }
 
 

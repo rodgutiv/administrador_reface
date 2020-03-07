@@ -1,8 +1,5 @@
 <template>
-  <v-dialog v-if="validarBoton(status)" v-model="dialog" max-width="500">
-    <template v-slot:activator="{ on }">
-      <v-btn v-on="on" small color="error" dark> Eliminar </v-btn>
-    </template>
+  <v-dialog v-if="validarBoton(info.status)" v-model="dialog" max-width="500">
     <v-card>
       <v-toolbar dark color="indigo">
        <v-toolbar-title style="color:white;" >Eliminar Producto</v-toolbar-title>
@@ -11,7 +8,7 @@
       <v-layout row>
         <v-flex xs10 offset-xs1 >
           <v-card-text>
-            ¿Estás seguro de que deseas eliminar el producto {{nombre}} del sistema?
+            ¿Estás seguro de que deseas eliminar el producto {{info.nombre}} del sistema?
           </v-card-text>
         </v-flex>
       </v-layout>
@@ -19,7 +16,7 @@
         <v-btn
           color="red darken-1"
           flat="flat"
-          @click="dialog = false"
+          @click="close(null)"
         >
           Cancelar
         </v-btn>
@@ -27,7 +24,7 @@
         <v-btn
           color="green darken-1"
           flat="flat"
-          @click="eliminar(clave_interna);dialog = false;"
+          @click="eliminar(info.clave_interna);"
         >
           Eliminar
         </v-btn>
@@ -35,18 +32,15 @@
     </v-card>
   </v-dialog>
   <v-dialog v-else v-model="dialog" max-width="500">
-    <template v-slot:activator="{ on }">
-      <v-btn v-on="on" small color="green" dark> Activar </v-btn>
-    </template>
     <v-card>
       <v-toolbar dark color="indigo">
-       <v-toolbar-title style="color:white;" >Activar Usuario</v-toolbar-title>
+       <v-toolbar-title style="color:white;" >Activar/Desactivar Producto</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-layout row>
         <v-flex xs10 offset-xs1 >
           <v-card-text style="text-align:center">
-            ¿Estás seguro de que deseas reactivar el producto {{nombre}} del sistema?
+            ¿Estás seguro de que deseas reactivar el producto {{info.nombre}} del sistema?
           </v-card-text>
         </v-flex>
       </v-layout>
@@ -55,7 +49,7 @@
         <v-btn
           color="red darken-1"
           flat="flat"
-          @click="dialog = false"
+          @click="close(null)"
         >
           Cancelar
         </v-btn>
@@ -63,7 +57,7 @@
         <v-btn
           color="green darken-1"
           flat="flat"
-          @click="reactivar(clave_interna);dialog = false;"
+          @click="reactivar(info.clave_interna);"
         >
           Reactivar
         </v-btn>
@@ -75,19 +69,16 @@
 import {api} from '@/api'
 export default {
     name: 'Frame',
-    props: {
-      clave_interna: String,
-      nombre: String,
-      status: String
-    },
+    props: ['dialog','info'],
     data () {
       return {
-        cant: 0,
-        info:null,
-        dialog: false,
+        cant: 0
       }
     },
     methods: {
+      close(datos){
+        this.$emit('close',datos)
+      },
        eliminar(clave_interna){
          api.post('/ad-productos/delete-product/'+clave_interna)
          .then(response => {
@@ -95,7 +86,8 @@ export default {
 //           this.models = response.data;
            //console.log(this.items);
            alert('Eliminación realizada con éxito');
-           window.location.replace("http://refacenet.org:61/productos");
+           this.close(true)
+           //window.location.replace("http://refacenet.org:61/productos");
          })
          .catch(e => {
 //           this.errors.push(e)
@@ -110,7 +102,8 @@ export default {
 //           this.models = response.data;
            //console.log(this.items);
            alert('Activacion realizada con éxito');
-           window.location.replace("http://refacenet.org:61/productos");
+           this.close(true)
+           //window.location.replace("http://refacenet.org:61/productos");
          })
          .catch(e => {
 //           this.errors.push(e)

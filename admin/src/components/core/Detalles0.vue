@@ -63,7 +63,7 @@
         <v-btn
           color="primary"
           flat
-          @click="dialog = false"
+          @click="close(null)"
         >
           Aceptar
         </v-btn>
@@ -75,28 +75,16 @@
 <script>
 export default {
     name: 'Frame',
-    props: {
-      nombre: String,
-      codigo: String,
-      clave_interna: String,
-      descripcion: String,
-      categoria: String,
-      tipo: String,
-      marca: String,
-      precio: Number,
-      autos: String,
-      stock: Number,
-      status: String,
-      id_promo: String,
-      pesado: String,
-      outlet: String
-    },
+    props: ['dialog','info'],
     data () {
       return {
-        cant: 0,
-        info:null,
-        dialog: false
+        cant: 0
       }
+    },
+    methods:{
+      close(datos){
+        this.$emit('close',datos)
+      },
     }
 }
 </script>

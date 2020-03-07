@@ -4,7 +4,7 @@
       <v-btn v-on="on" small color="#003b94" dark> Editar </v-btn>
     </template>
     <v-card>
-      <v-form ref="form" v-model="valid" v-on:submit.prevent="Update()" lazy-validation>
+      <v-form ref="form" v-on:submit.prevent="Update()" lazy-validation>
         <v-toolbar color="#003b94">
          <v-toolbar-title style="color:white;">Editar {{ nombres }} {{ apellidos }}</v-toolbar-title>
           <v-spacer></v-spacer>
@@ -15,7 +15,7 @@
           <v-text-field
             class="purple-input"
             label="Id"
-            disabled="true"
+            :disabled="true"
             name="id"
             :value="id"
           />
@@ -68,7 +68,7 @@
 -->
             <h4> Fecha de nacimiento: </h4>
             <template>
-              <v-row justify="center" />
+              
                 <v-text-field
                   type="date"
                   label="Fecha de Nacimiento"
@@ -334,8 +334,9 @@ export default {
                  .then(response => {
                    // JSON responses are automatically parsed.
         //           this.models = response.data;
-                     alert('Actualización realizada con éxito');
-                     window.location.replace("http://refacenet.org:61/productos");
+                     alert('Actualización de cliente'+this.$router);
+                     this.$router.go()
+                     //window.location.replace("http://refacenet.org:61/productos");
                    //console.log(this.items);
                  })
                  .catch(e => {
