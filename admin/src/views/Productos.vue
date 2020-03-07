@@ -17,7 +17,7 @@
           text="Listado de Productos y características"
         >
            <v-text-field outline label="Buscar" v-model="buscar">
-            
+
           </v-text-field>
           <template
           >
@@ -58,6 +58,7 @@
                 <Modaldetalles :nombre="item.nombre" :codigo="item.codigo" :clave_interna="item.clave_interna" :descripcion="item.descripcion" :categoria="item.categoria" :tipo="item.tipo" :marca="item.marca" :precio="item.precio" :autos="item.autos" :stock="item.stock" :status="item.status" :id_promo="item.id_promo" :pesado="item.pesado" :outlet="item.outlet"/>
                 <Modaleditar :nombre="item.nombre" :codigo="item.codigo" :clave_interna="item.clave_interna" :descripcion="item.descripcion" :categoria="item.categoria" :tipo="item.tipo" :marca="item.marca" :precio="item.precio" :autos="item.autos" :stock="item.stock" :status="item.status" :id_promo="item.id_promo" :pesado="item.pesado" :outlet="item.outlet"/>
                 <Modaleliminar :nombre="item.nombre" :clave_interna="item.clave_interna" :status="item.status" />
+                <Modalautos />
               </td>
             </template>
           </v-data-table>
@@ -76,6 +77,7 @@ import Modaldetalles from '@/components/core/Detalles0.vue'
 import Modaleditar from '@/components/core/Detalles1.vue'
 import Modaleliminar from '@/components/core/Detalles3.vue'
 import Modalalta from '@/components/core/Detalles7.vue'
+import Modalautos from '@/components/core/Detalles70.vue'
 import {api} from '@/api'
 //import $ from 'jquery'
 //import axios from 'axios'
@@ -85,7 +87,8 @@ export default {
       Modaldetalles,
       Modaleditar,
       Modaleliminar,
-      Modalalta
+      Modalalta,
+      Modalautos
   },
   data () {
     return {
