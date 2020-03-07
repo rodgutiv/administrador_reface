@@ -16,7 +16,7 @@
           title="Productos"
           text="Listado de Productos y características"
         >
-           <v-text-field outline label="Buscar" v-model="buscar">
+           <v-text-field outline label="Buscar" v-model="escrito">
             
           </v-text-field>
           <template
@@ -31,7 +31,8 @@
           <v-data-table
             :headers="headers"
             :items="items"
-            :search="buscar"
+            :pagination.sync="pagination"
+            :search="escrito"
           >
             <template
               slot="headerCell"

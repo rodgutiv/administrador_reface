@@ -4,7 +4,7 @@
       <v-btn v-on="on" small color="#003b94" dark> Reestablecer contraseña </v-btn>
     </template>
     <v-card>
-      <v-form ref="form" v-model="valid" v-on:submit.prevent="Pass()" lazy-validation>
+      <v-form ref="form" v-on:submit.prevent="Pass()" lazy-validation>
         <v-toolbar color="#003b94">
          <v-toolbar-title style="color:white;">Reestablecer contraseña</v-toolbar-title>
           <v-spacer></v-spacer>

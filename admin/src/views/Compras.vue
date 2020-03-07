@@ -16,9 +16,13 @@
           title="Compras"
           text="Ordenes de compra realizadas"
         >
+          <v-text-field outline label="Buscar" v-model="escrito">
+            
+          </v-text-field>
           <v-data-table
             :headers="headers"
             :items="items"
+             :search="escrito"
           >
             <template
               slot="headerCell"
@@ -34,8 +38,7 @@
               slot-scope="{ item }"
             >
               <td>{{ item.id }}</td>
-              <td>{{ item.datos_personales.nombres }}</td>
-              <td>{{ item.datos_personales.apellidos }}</td>
+              <td>{{ item.datos_personales.nombre_completo }}</td>
               <td>{{ item.total_productos }}</td>
               <td>$ {{ item.total_venta }} m.n.</td>
               <td>{{ item.numero_guia }}</td>
@@ -102,15 +105,11 @@ export default {
         },
         {
           text: 'Nombres',
-          value: 'nombres'
-        },
-        {
-          text: 'Apellidos',
-          value: 'apellidos'
+          value: 'datos_personales.nombre_completo'
         },
         {
           text: 'Productos',
-          value: 'productos'
+          value: 'total_productos'
         },
         {
           text: 'Total',
@@ -118,7 +117,7 @@ export default {
         },
         {
           text: 'Guia',
-          value: 'guia'
+          value: 'numero_guia'
         },
         {
           text: 'Status',

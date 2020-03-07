@@ -16,9 +16,13 @@
           title="Noticias"
           text="Gestión de noticias"
         >
+          <v-text-field outline label="Buscar" v-model="escrito">
+            
+          </v-text-field>
           <v-data-table
             :headers="headers"
             :items="items"
+            :search="escrito"
           >
             <template
               slot="headerCell"
