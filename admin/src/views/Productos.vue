@@ -17,7 +17,7 @@
           text="Listado de Productos y características"
         >
            <v-text-field outline label="Buscar" v-model="escrito">
-            
+
           </v-text-field>
           <template
           >
@@ -58,7 +58,7 @@
               <td class="text-xs-right">
                 <v-btn color="error" small v-on:click="eliminar(item)">Estatus</v-btn>
                 <v-btn color="#003b94" small v-on:click="editar(item)">Editar</v-btn>
-                <v-btn color="blue" small v-on:click="detalle(item)">Detalles</v-btn>                
+                <v-btn color="blue" small v-on:click="detalle(item)">Detalles</v-btn>
               </td>
             </template>
           </v-data-table>
@@ -82,6 +82,7 @@ import Modaldetalle from '@/components/core/DetallesProductos.vue'
 import Modaleditar from '@/components/core/Detalles1.vue'
 import Modaleliminar from '@/components/core/Detalles3.vue'
 import Modalalta from '@/components/core/Detalles7.vue'
+import Modalautos from '@/components/core/Detalles70.vue'
 import {api} from '@/api'
 //import $ from 'jquery'
 //import axios from 'axios'
@@ -170,7 +171,7 @@ export default {
       }else{
         this.dialog2 = false;
       }
-      
+
     },
     closeeliminar(){
       this.dialog3 = false;
