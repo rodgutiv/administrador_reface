@@ -1,0 +1,5 @@
+admin/node_modules/*
+admin/public/*
+admin/dist/*
+admin-backend/app/admin/*
+admin-backend/app/public/*
