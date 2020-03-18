@@ -24,14 +24,14 @@ var app = express();
 console.log("construidas las rutas");
 
 /*
-app.use(cors("http://10.3.0.7:61"));
-app.use(cors("http://10.3.0.7:61/dashboard"));
-app.use(cors("http://10.3.0.7:61/admin"));
-app.use(cors("http://10.3.0.7:61/clientes"));
-app.use(cors("http://10.3.0.7:61/productos"));
-app.use(cors("http://10.3.0.7:61/promociones"));
-app.use(cors("http://10.3.0.7:61/noticias"));
-app.use(cors("http://10.3.0.7:61/index"));
+app.use(cors("http://refacenet.org:61"));
+app.use(cors("http://refacenet.org:61/dashboard"));
+app.use(cors("http://refacenet.org:61/admin"));
+app.use(cors("http://refacenet.org:61/clientes"));
+app.use(cors("http://refacenet.org:61/productos"));
+app.use(cors("http://refacenet.org:61/promociones"));
+app.use(cors("http://refacenet.org:61/noticias"));
+app.use(cors("http://refacenet.org:61/index"));
 //app.use(cors("http://localhost:3030/web"));
 
 app.use(function(req, res, next) {

@@ -32,8 +32,8 @@
                >
                  <v-card flat tile class="d-flex">
                    <v-img
-                     :src="`http://10.3.0.7:62/replace-sys/imagenes_productos/` + info.clave_interna + `/` + info.clave_interna + `-00` + n + `.jpg`"
-                     :lazy-src="`http://10.3.0.7:62/replace-sys/imagenes_productos/` + info.clave_interna + `/` + info.clave_interna + `-00` + n + `.jpg`"
+                     :src="`http://refacenet.org:62/replace-sys/imagenes_productos/` + info.clave_interna + `/` + info.clave_interna + `-00` + n + `.jpg`"
+                     :lazy-src="`http://refacenet.org:62/replace-sys/imagenes_productos/` + info.clave_interna + `/` + info.clave_interna + `-00` + n + `.jpg`"
                         aspect-ratio="1"
                      class="grey lighten-2"
                    >
