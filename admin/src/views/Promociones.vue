@@ -39,16 +39,18 @@
             >
               <td>{{ item.id_promo }}</td>
               <td>{{ item.nombre }}</td>
-              <td>{{ item.descuento }}</td>
+              <td>{{ item.descuento }} %</td>
               <td>{{ item.status }}</td>
               <td class="text-xs-right">
-                <Modaldetalles :id_promo="item.id_promo" :ruta="item.ruta" :nombre="item.nombre" :descripcion="item.descripcion" :descuento="item.descuento" :status="item.status"/>
+                <v-btn color="#003b94" small v-on:click="editar(item)">Editar</v-btn>
+                <v-btn color="blue" small v-on:click="detalle(item)">Detalles</v-btn>
                 <Modaleliminar :id_promo="item.id_promo" :nombre="item.nombre" :status="item.status" />
               </td>
             </template>
           </v-data-table>
             <Modalalta  />
-
+             <Modaldetalles  :info="info2" :dialog="dialog" @close="closedatos"/>
+            <Modaleditar :info="info2" :dialog="dialog2" @close="closeeditar"/>
         </material-card>
       </v-flex>
     </v-layout>
@@ -61,6 +63,7 @@
 import Modaldetalles from '@/components/core/Detalles13.vue'
 import Modaleliminar from '@/components/core/Detalles14.vue'
 import Modalalta from '@/components/core/Detalles15.vue'
+import Modaleditar from '@/components/core/PromocionEdit.vue'
 import {api} from '@/api'
 //import $ from 'jquery'
 //import axios from 'axios'
@@ -69,7 +72,8 @@ export default {
 //    toolbar,
       Modaldetalles,
       Modaleliminar,
-      Modalalta
+      Modalalta,
+      Modaleditar
   },
   data () {
     return {
@@ -77,6 +81,8 @@ export default {
       info:null,
       rating: 3,
       id:null,
+      dialog2:false,
+      dialog:false,
       show: false,
       rowsPerPageItems: [12, 24, 36],
       pagination: {
@@ -87,7 +93,6 @@ export default {
       empty: [],
       content1:null,
       content2:null,
-      dialog: false,
       sub:null,
       sub2:null,
       headers: [
@@ -113,11 +118,47 @@ export default {
           value: 'opciones',
           align: 'right'
         }
-      ]
+      ],
+      info2:{id_promo:''},
     }
-},
- methods: {
- },
+  },
+  methods: {
+    editar(datos){
+      this.info2=datos
+      this.dialog2=true
+    },
+    closeeditar(res){
+      if(res==true){
+        this.dialog2 = false;
+        console.log('entro')
+        this.promociones()
+      }else{
+        this.dialog2 = false;
+        console.log('false')
+      }
+
+    },
+    closedatos(){
+      this.dialog = false;
+    },
+    detalle(datos){
+      this.info2=datos
+      this.dialog=true
+    },
+    promociones(){
+      api.get(`/promociones/all`)
+      .then(response => {
+        // JSON responses are automatically parsed.
+        this.items = response.data
+        //console.log(this.items);
+      })
+      .catch(e => {
+        this.errors.push(e)
+      //  console.log("Error");
+      //  console.log(e);
+      })
+    }
+  },
 created() {
     //alert(sessionStorage.getItem("dato"))
     this.info = this.$route.params.info
@@ -130,17 +171,7 @@ created() {
     }else{
       this.escrito=''
     }
-    api.get(`/promociones/all`)
-    .then(response => {
-      // JSON responses are automatically parsed.
-      this.items = response.data
-      //console.log(this.items);
-    })
-    .catch(e => {
-      this.errors.push(e)
-    //  console.log("Error");
-    //  console.log(e);
-    })
+    this.promociones()
 }
 
 

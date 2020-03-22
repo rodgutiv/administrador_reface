@@ -66,7 +66,7 @@
           flat="flat"
           @click="reactivar(id_promo);dialog = false;"
         >
-          Eliminar
+          Activar
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -94,9 +94,9 @@ export default {
          .then(response => {
            // JSON responses are automatically parsed.
 //           this.models = response.data;
-           console.log(response.data);
-           alert('Eliminación realizada con éxito');
-           window.location.replace("http://refacenet.org:61/promociones");
+           console.log(response.data.success);
+           //alert('Eliminación realizada con éxito');
+           this.$router.go()
          })
          .catch(e => {
 //           this.errors.push(e)
@@ -110,8 +110,9 @@ export default {
            // JSON responses are automatically parsed.
 //           this.models = response.data;
            //console.log(this.items);
-           alert('Activacion realizada con éxito');
-           window.location.replace("http://refacenet.org:61/promociones");
+           console.log(response.data.success);
+           //alert('Eliminación realizada con éxito');
+           this.$router.go()
          })
          .catch(e => {
 //           this.errors.push(e)

@@ -222,7 +222,7 @@ export default {
 //           this.models = response.data;
              alert('Actualización realizada con éxito');
              this.close(true)
-             //window.location.replace("http://refacenet.org:61/productos");
+             //window.location.replace("http://10.3.0.7:61/productos");
            //console.log(this.items);
          })
          .catch(e => {

@@ -95,7 +95,7 @@ export default {
 //           this.models = response.data;
            //console.log(this.items);
            alert('Eliminación realizada con éxito');
-           window.location.replace("http://refacenet.org:61/noticias");
+           window.location.replace("http://10.3.0.7:61/noticias");
          })
          .catch(e => {
 //           this.errors.push(e)
@@ -110,7 +110,7 @@ export default {
 //           this.models = response.data;
            //console.log(this.items);
            alert('Activacion realizada con éxito');
-           window.location.replace("http://refacenet.org:61/noticias");
+           window.location.replace("http://10.3.0.7:61/noticias");
          })
          .catch(e => {
 //           this.errors.push(e)

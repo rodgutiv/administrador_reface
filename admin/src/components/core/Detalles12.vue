@@ -4,7 +4,7 @@
       <v-btn v-on="on" small color="#003b94" dark> Añadir Noticia </v-btn>
     </template>
     <v-card>
-      <v-form id="form" ref="form" v-model="valid" v-on:submit.prevent="Update()" enctype="multipart/form-data" lazy-validation>
+      <v-form id="form" ref="form"  v-on:submit.prevent="Update()" enctype="multipart/form-data" lazy-validation>
         <v-toolbar color="#003b94">
          <v-toolbar-title style="color:white;">Nueva Noticia</v-toolbar-title>
           <v-spacer></v-spacer>
@@ -124,7 +124,7 @@ export default {
             $.ajax({
                 type: "POST",
                 enctype: 'multipart/form-data',
-                url: "http://refacenet.org:61/noticias/new-noticia",
+                url: "http://10.3.0.7:61/noticias/new-noticia",
                 data: data,
                 processData: false,
                 contentType: false,
@@ -133,7 +133,7 @@ export default {
                 success: function (data) {
                     console.log("SUCCESS : ", data);
                   alert("Noticia añadida exitosamente");
-                  window.location.replace("http://refacenet.org:61/noticias");
+                  window.location.replace("http://10.3.0.7:61/noticias");
                 },
                 error: function (e) {
                     console.log("ERROR : ", e);

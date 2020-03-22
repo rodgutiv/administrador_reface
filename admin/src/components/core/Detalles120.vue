@@ -85,7 +85,7 @@ export default {
                 success: function (data) {
                     console.log("SUCCESS : ", data);
                   alert("Imagen añadida exitosamente");
-                  window.location.replace("http://refacenet.org:61/index");
+                  window.location.replace("http://10.3.0.7:61/index");
                 },
                 error: function (e) {
                     console.log("ERROR : ", e);

@@ -107,7 +107,7 @@
 
             Monto de ventas de última semana
           </p>
-        <!--
+       
           <template slot="actions">
             <v-icon
               class="mr-2"
@@ -172,10 +172,10 @@
             </v-icon>
             <span class="caption grey--text font-weight-light">campaign sent 26 minutes ago</span>
           </template>
-        -->
+        
         </material-chart-card>
       </v-flex>
-<!--
+
       <v-flex
         sm6
         xs12

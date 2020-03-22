@@ -1,19 +1,16 @@
 <template>
-  <v-dialog v-model="dialog" max-width="500">
-    <template v-slot:activator="{ on }">
-      <v-btn v-on="on" small color="#003b94" dark> Detalles de noticia </v-btn>
-    </template>
+  <v-dialog v-model="dialog" max-width="500">   
     <v-card>
       <v-toolbar color="#003b94">
-       <v-toolbar-title style="color:white;">Detalles {{ titulo }}</v-toolbar-title>
+       <v-toolbar-title style="color:white;">Detalles {{ info.titulo }}</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-layout row>
         <v-flex xs10 offset-xs1 >
-          <h4> Título: {{titulo}} </h4>
-          <h4> Categoría: {{categoria}} </h4>
-          <h4> Fecha: {{fecha}} </h4>
-          <h4> Status: {{status}} </h4>
+          <h4> Título: {{info.titulo}} </h4>
+          <h4> Categoría: {{info.categoria}} </h4>
+          <h4> Fecha: {{info.fecha}} </h4>
+          <h4> Status: {{info.status}} </h4>
           <h4> Imágen Asociada: </h4>
           <v-card>
            <v-container grid-list-sm fluid>
@@ -26,8 +23,8 @@
                >
                  <v-card flat tile class="d-flex">
                    <v-img
-                     :src="ruta"
-                     :lazy-src="ruta"
+                     :src="info.ruta"
+                     :lazy-src="info.ruta"
                      aspect-ratio="1"
                      class="grey lighten-2"
                    >
@@ -50,7 +47,7 @@
          <h4>Contenido: </h4>
          <br/>
          <p>
-         {{contenido}}
+         {{info.contenido}}
          <p/>
         </v-flex>
       </v-layout>
@@ -59,7 +56,7 @@
         <v-btn
           color="primary"
           flat
-          @click="dialog = false"
+           @click="close(null)"
         >
           Aceptar
         </v-btn>
@@ -71,19 +68,15 @@
 <script>
 export default {
     name: 'Frame',
-    props: {
-      ruta: String,
-      categoria: String,
-      titulo: String,
-      contenido: String,
-      fecha: String,
-      status: String
-    },
+    props: ['dialog','info'],
     data () {
       return {
-        cant: 0,
-        info:null,
-        dialog: false
+        cant: 0
+      }
+    },
+    methods:{
+      close(datos){
+        this.$emit('close',datos)
       }
     }
 }

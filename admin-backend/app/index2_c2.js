@@ -27,14 +27,14 @@ main.use(helmet())
 main.use(cors())
 
 /*
-main.use(cors("http://refacenet.org:61"));
-main.use(cors("http://refacenet.org:61/dashboard"));
-main.use(cors("http://refacenet.org:61/admin"));
-main.use(cors("http://refacenet.org:61/clientes"));
-main.use(cors("http://refacenet.org:61/productos"));
-main.use(cors("http://refacenet.org:61/promociones"));
-main.use(cors("http://refacenet.org:61/noticias"));
-main.use(cors("http://refacenet.org:61/index"));
+main.use(cors("http://10.3.0.7:61"));
+main.use(cors("http://10.3.0.7:61/dashboard"));
+main.use(cors("http://10.3.0.7:61/admin"));
+main.use(cors("http://10.3.0.7:61/clientes"));
+main.use(cors("http://10.3.0.7:61/productos"));
+main.use(cors("http://10.3.0.7:61/promociones"));
+main.use(cors("http://10.3.0.7:61/noticias"));
+main.use(cors("http://10.3.0.7:61/index"));
 */
 /** Definir directorio estatico para front */
 //www.use(express.static(path.join(__dirname, '/admin'), {index: false}))
@@ -51,7 +51,7 @@ main.get('/', function (req, res) {
 */
 /** * * * * * * * * * * * * * * * * * * * *  * * * * * * * * */
 //main.use(app)
-main.use(vhost('refacenet.org:61',app))
+main.use(vhost('10.3.0.7:61',app))
 //main = require('./app');
 
 // Creamos la variable PORT para indicar el puerto en el que va a funcionar el servidor

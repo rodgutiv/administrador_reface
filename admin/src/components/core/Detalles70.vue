@@ -154,7 +154,7 @@ export default {
              this.mess  = response.data.message;
            //console.log(this.items);
            alert(this.mess);
-           window.location.replace("http://refacenet.org:61/productos");
+           window.location.replace("http://10.3.0.7:61/productos");
          })
          .catch(e => {
 //           this.errors.push(e)

@@ -87,7 +87,7 @@ export default {
            //console.log(this.items);
            alert('Eliminación realizada con éxito');
            this.close(true)
-           //window.location.replace("http://refacenet.org:61/productos");
+           //window.location.replace("http://10.3.0.7:61/productos");
          })
          .catch(e => {
 //           this.errors.push(e)
@@ -103,7 +103,7 @@ export default {
            //console.log(this.items);
            alert('Activacion realizada con éxito');
            this.close(true)
-           //window.location.replace("http://refacenet.org:61/productos");
+           //window.location.replace("http://10.3.0.7:61/productos");
          })
          .catch(e => {
 //           this.errors.push(e)

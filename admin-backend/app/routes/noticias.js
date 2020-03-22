@@ -19,28 +19,31 @@ router.get('/all', function(req, res, next) {
 
 /* Update noticia */
 router.post('/update-noticia', function(req, res, next) {
-  /*
-  var titulo = req.params.titulo;
-  console.log(titulo)
-
+  
+  var datos = req.body;
+  console.log("datos noticia: ",datos)
+  var titulo = datos.titulo
   var query = {
-    'ruta': "/Users/macbookair/Documents/refacesys/replace-sys/admin-backend/app/imagenes_noticias/" + req.files.img1.name,
-    'categoria': specific_data.categoria,
-    'titulo': specific_data.titulo,
-    'contenido': specific_data.contenido,
-    'fecha': fecha,
-    'status': "Activo"
+    //'ruta': "/Users/macbookair/Documents/refacesys/replace-sys/admin-backend/app/imagenes_noticias/" + req.files.img1.name,
+    'categoria': datos.categoria,
+    'titulo': datos.titulo,
+    'contenido': datos.contenido,
+    'fecha': datos.fecha,
+    'status': datos.estatus
   }
-
+  console.log("query:", query)
   //metodo para buscar el producto
-  noticia.find({'titulo': titulo})
+  noticia.find({'titulo': datos.titulo})
   .then((rawResponse) =>{
     if(!rawResponse){
       return res.status(404).send({message: 'Ningun registro identificado'});
     }else{
       console.log('correcto')
+      //console.log(rawResponse)
+      //var result = {'success':true}
+      //return res.json(result);
       //metodo que cambia el stock
-      noticia.updateOne({'titulo': titulo}, {'status': "Inactivo" })
+      noticia.updateOne({'titulo': titulo}, query)
       .then((noticia) => {
         console.log('update')
         console.log(noticia)
@@ -122,7 +125,7 @@ router.post('/new-noticia', function(req, res, next) {
   console.log(specific_data);
 
   var query = {
-    'ruta': "http://refacenet.org:63/noticias/" + req.files.img1.name,
+    'ruta': "http://10.3.0.7:63/noticias/" + req.files.img1.name,
     'categoria': specific_data.categoria,
     'titulo': specific_data.titulo,
     'contenido': specific_data.contenido,

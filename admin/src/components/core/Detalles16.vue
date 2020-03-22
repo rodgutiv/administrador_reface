@@ -84,7 +84,7 @@ export default {
             {
               alert('Debes desvincular primero una imagen anterior al carrusel');
             }
-             window.location.replace("http://refacenet.org:61/index");
+             window.location.replace("http://10.3.0.7:61/index");
            //console.log(this.items);
          })
          .catch(e => {

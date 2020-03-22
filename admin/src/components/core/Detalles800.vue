@@ -112,7 +112,7 @@ export default {
            // JSON responses are automatically parsed.
 //           this.models = response.data;
              alert('Actualización realizada con éxito');
-             window.location.replace("http://refacenet.org:61/compras");
+             window.location.replace("http://10.3.0.7:61/compras");
            //console.log(this.items);
          })
          .catch(e => {

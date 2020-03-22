@@ -82,7 +82,7 @@ export default {
 //           this.models = response.data;
           //console.log(this.items);
           alert('Actualización realizada con éxito');
-          window.location.replace("http://refacenet.org:61/compras");
+          window.location.replace("http://10.3.0.7:61/compras");
         })
         .catch(e => {
 //           this.errors.push(e)

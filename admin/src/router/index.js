@@ -14,7 +14,7 @@ import Meta from 'vue-meta'
 
 // Routes
 import paths from './paths'
-
+//import Login from '@/components/core/Login'
 function route (path, view, name) {
   return {
     name: name || view,
@@ -30,6 +30,10 @@ Vue.use(Router)
 // Create a new router
 const router = new Router({
   mode: 'history',
+  /*routes:{
+      path: '/',
+      component: Login
+  },*/
   routes: paths.map(path => route(path.path, path.view, path.name)).concat([
     { path: '*', redirect: '/dashboard' }
   ]),

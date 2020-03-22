@@ -409,7 +409,7 @@ export default {
         //           this.models = response.data;
                alert('Actualización realizada con éxito');
                this.usuario()
-               //window.location.replace("http://refacenet.org:61/admin");
+               //window.location.replace("http://10.3.0.7:61/admin");
              //console.log(this.items);
            })
            .catch(e => {

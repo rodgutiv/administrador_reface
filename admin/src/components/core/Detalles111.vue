@@ -336,7 +336,7 @@ export default {
         //           this.models = response.data;
                      alert('Actualización de cliente'+this.$router);
                      this.$router.go()
-                     //window.location.replace("http://refacenet.org:61/productos");
+                     //window.location.replace("http://10.3.0.7:61/productos");
                    //console.log(this.items);
                  })
                  .catch(e => {

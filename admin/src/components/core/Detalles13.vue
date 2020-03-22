@@ -1,20 +1,17 @@
 <template>
   <v-dialog v-model="dialog" max-width="500">
-    <template v-slot:activator="{ on }">
-      <v-btn v-on="on" small color="#003b94" dark> Detalles de promoción </v-btn>
-    </template>
     <v-card>
       <v-toolbar color="#003b94">
-       <v-toolbar-title style="color:white;">Detalles {{ titulo }}</v-toolbar-title>
+       <v-toolbar-title style="color:white;">Detalles {{ info.titulo }}</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-layout row>
         <v-flex xs10 offset-xs1 >
-          <h4> Identificador: {{id_promo}} </h4>
-          <h4> Nombre: {{nombre}} </h4>
-          <h4> Descripción: {{descripcion}} </h4>
-          <h4> Descuento: {{descuento}} %</h4>
-          <h4> Status: {{status}} </h4>
+          <h4> Identificador: {{info.id_promo}} </h4>
+          <h4> Nombre: {{info.nombre}} </h4>
+          <h4> Descripción: {{info.descripcion}} </h4>
+          <h4> Descuento: {{info.descuento}} %</h4>
+          <h4> Status: {{info.status}} </h4>
           <h4> Imágen Asociada: </h4>
           <v-card>
            <v-container grid-list-sm fluid>
@@ -27,8 +24,8 @@
                >
                  <v-card flat tile class="d-flex">
                    <v-img
-                     :src="ruta"
-                     :lazy-src="ruta"
+                     :src="info.ruta"
+                     :lazy-src="info.ruta"
                      aspect-ratio="1"
                      class="grey lighten-2"
                    >
@@ -55,7 +52,7 @@
         <v-btn
           color="primary"
           flat
-          @click="dialog = false"
+          @click="close(null)"
         >
           Aceptar
         </v-btn>
@@ -67,19 +64,15 @@
 <script>
 export default {
     name: 'Frame',
-    props: {
-      id_promo: String,
-      ruta: String,
-      nombre: String,
-      descripcion: String,
-      descuento: Number,
-      status: String
-    },
+    props: ['dialog','info'],
     data () {
       return {
-        cant: 0,
-        info:null,
-        dialog: false
+        cant: 0
+      }
+    },
+     methods:{
+      close(datos){
+        this.$emit('close',datos)
       }
     }
 }
