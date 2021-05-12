@@ -21,7 +21,7 @@
     "moment": "^2.24.0",
     "mongoose": "^5.7.9",
     "morgan": "~1.9.0",
-    "nodemailer": "^5.1.1",
+    "nodemailer": "^6.4.16",
     "path": "^0.12.7",
     "sha.js": "^2.4.11",
     "sha256": "^0.2.0",
